@@ -17,8 +17,7 @@ def reservedLookup(tokenString):
     return TokenType.ID
 
 def getToken(imprime = True):
-    global position, lineno, program, programLength
-    program = program
+    global position, lineno
     tokenString = "" # string for storing token
     currentToken = None # is a TokenType value
     state = StateType.START # current state - always begins at START
