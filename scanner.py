@@ -17,7 +17,8 @@ def reservedLookup(tokenString):
     return TokenType.ID
 
 def getToken(imprime = True):
-    global position, lineno
+    global position, lineno, program, programLength
+    program = program
     tokenString = "" # string for storing token
     currentToken = None # is a TokenType value
     state = StateType.START # current state - always begins at START
@@ -30,8 +31,6 @@ def getToken(imprime = True):
                 state = StateType.INNUM
             elif c.isalpha():
                 state = StateType.INID
-            elif c == ':':
-                state = StateType.INASSIGN
             elif ((c == ' ') or (c == '\t') or (c == '\n')):
                 save = False
                 if (c == '\n'):
@@ -47,6 +46,8 @@ def getToken(imprime = True):
                     currentToken = TokenType.ENDFILE
                 elif c == '=':
                     currentToken = TokenType.EQ
+                elif c=='==':
+                    currentToken = TokenType.IS
                 elif c == '<':
                     currentToken = TokenType.LT
                 elif c == '+':
@@ -63,6 +64,17 @@ def getToken(imprime = True):
                     currentToken = TokenType.RPAREN
                 elif c == ';':
                     currentToken = TokenType.SEMI
+                elif c == ',':
+                    currentToken = TokenType.COMA
+                elif c == '[':
+                    currentToken = TokenType.LBOX
+                elif c == ']':
+                    currentToken = TokenType.RBOX
+                elif c == '{':
+                    currentToken = TokenType.LKEY
+                elif c == '}':
+                    currentToken = TokenType.RKEY
+                    
                 else:
                     currentToken = TokenType.ERROR
         elif state == StateType.INCOMMENT:
