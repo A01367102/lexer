@@ -9,7 +9,7 @@ def globales(prog, pos, long):
 #El script con el que se prueba será el siguiente:
 
 from globalTypes import *
-from scanner import *
+from lexer import *
 
 f = open('prueba.c-', 'r')
 program = f.read() 		# lee todo el archivo a compilar
