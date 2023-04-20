@@ -48,18 +48,44 @@ def getToken(imprime = True):
                     if cc =='=':
                         currentToken = TokenType.IS
                         position += 1
+                        c='=='
                     else:
                         currentToken = TokenType.EQ
                 elif c == '<':
-                    currentToken = TokenType.LT
+                    cc = program[position+1]
+                    if cc =='=':
+                        currentToken = TokenType.LE
+                        position += 1
+                        c='<='
+                    else:
+                        currentToken = TokenType.LT
+                elif c == '>':
+                    cc= program[position+1]
+                    if cc =='=':
+                        currentToken = TokenType.GE
+                        position += 1
+                        c='>='
+                    else:
+                        curretToken = TokenType.GT
                 elif c == '+':
                     currentToken = TokenType.PLUS
                 elif c == '-':
                     currentToken = TokenType.MINUS
                 elif c == '*':
-                    currentToken = TokenType.TIMES
+                    cc = program[position+1]
+                    if cc =='/': #end comment
+                        c='*/'
+                        position=+1
+                    else:
+                        currentToken = TokenType.TIMES
                 elif c == '/':
-                    currentToken = TokenType.OVER
+                    cc = program[position+1]
+                    if cc =='*':
+                        save = False
+                        state = StateType.INCOMMENT
+                        position=+1
+                    else:
+                        currentToken = TokenType.OVER
                 elif c == '(':
                     currentToken = TokenType.LPAREN
                 elif c == ')':
@@ -76,6 +102,14 @@ def getToken(imprime = True):
                     currentToken = TokenType.LKEY
                 elif c == '}':
                     currentToken = TokenType.RKEY
+                elif c == '!':
+                    cc = program[position+1]
+                    if cc =='=':
+                        currentToken = TokenType.NE
+                        position += 1
+                        c='!='
+                    else:
+                        currentToken = TokenType.ERROR
                     
                 else:
                     currentToken = TokenType.ERROR

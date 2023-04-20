@@ -1,7 +1,14 @@
 int main() {
+    !
     int x = 123;
     printf("Hello, world!\n");
+    /*esto es 
+    un comentario*/
     return 0;
     10 == 40;
     10 = 20;
+    10 <= 20;
+    10 >= 20;
+    !=
+    contador = contador + 3indice
 }
