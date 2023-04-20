@@ -44,9 +44,12 @@ def getToken(imprime = True):
                     save = False
                     currentToken = TokenType.ENDFILE
                 elif c == '=':
-                    currentToken = TokenType.EQ
-                elif c=='==':
-                    currentToken = TokenType.IS
+                    cc = program[position+1]
+                    if cc =='=':
+                        currentToken = TokenType.IS
+                        position += 1
+                    else:
+                        currentToken = TokenType.EQ
                 elif c == '<':
                     currentToken = TokenType.LT
                 elif c == '+':
