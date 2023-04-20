@@ -19,7 +19,7 @@ from globalTypes import *
 
 lineno = 1
 
-def recibeScanner(prog, pos, long):
+def recibeScanner(prog, pos, long): # función para pasar los valores iniciales de las variables globales
     global program
     global position
     global programLength
@@ -27,19 +27,19 @@ def recibeScanner(prog, pos, long):
     position = pos
     programLength = long
 
-def reservedLookup(tokenString):
+def reservedLookup(tokenString): # busca en la lista de palabras reservadas
     for w in ReservedWords:
         if tokenString == w.value:
             return TokenType(tokenString)
     return TokenType.ID
 
-def getToken(imprime = True):
-    global position, lineno
+def getToken(imprime = True): # función principal
+    global position, lineno # variables globales
     tokenString = "" # string for storing token
     currentToken = None # is a TokenType value
     state = StateType.START # current state - always begins at START
     save = True # flag to indicate save to tokenString
-    while (state != StateType.DONE):
+    while (state != StateType.DONE): # loop until state is DONE
         c = program[position]
         save = True
         if state == StateType.START:
@@ -125,7 +125,7 @@ def getToken(imprime = True):
                     state = StateType.INSTRING
                 else:
                     currentToken = TokenType.ERROR
-        elif state == StateType.INCOMMENT:
+        elif state == StateType.INCOMMENT: # comentario
             save = False
             if position == programLength: #EOF
                 state = StateType.DONE
@@ -136,7 +136,7 @@ def getToken(imprime = True):
             elif c == '\n':
                 #print("línea: ", lineno)
                 lineno += 1
-        elif state == StateType.INASSIGN:
+        elif state == StateType.INASSIGN: # asignación
             state = StateType.DONE
             if c == '=':
                 currentToken = TokenType.ASSIGN
@@ -146,7 +146,7 @@ def getToken(imprime = True):
                     position -= 1 # ungetNextChar()
                 save = False
                 currentToken = TokenType.ERROR
-        elif state == StateType.INNUM:
+        elif state == StateType.INNUM: # número
             if not c.isdigit():
                 # backup in the input
                 if position <= programLength:
@@ -154,7 +154,7 @@ def getToken(imprime = True):
                 save = False
                 state = StateType.DONE
                 currentToken = TokenType.NUM
-        elif state == StateType.INID:
+        elif state == StateType.INID: # identificador
             if not c.isalpha():
                 # backup in the input
                 if position <= programLength:
@@ -162,7 +162,7 @@ def getToken(imprime = True):
                 save = False
                 state = StateType.DONE
                 currentToken = TokenType.ID
-        elif state == StateType.INSTRING:
+        elif state == StateType.INSTRING: # cadena
             if not c.isalpha() or " " or "\t" or "\n":
                 # backup in the input
                 if position <= programLength:
@@ -172,7 +172,7 @@ def getToken(imprime = True):
                 currentToken = TokenType.ID
             elif c == '"':
                 state = StateType.START
-        elif state == StateType.DONE:
+        elif state == StateType.DONE: # final
             None
         else: # should never happen
             print('Scanner Bug: state= '+str(state))
