@@ -19,8 +19,8 @@ class TokenType(Enum):
 
     # multicharacter tokens
 
-    ID = 310
-    NUM = 311
+    ID = r'[a-zA-Z][a-zA-Z]*'
+    NUM = r'[0-9]+'
     LETTER = r'[a-zA-Z][a-zA-Z]*'
     DIGIT = r'[0-9]+'
 

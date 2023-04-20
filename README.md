@@ -1,9 +1,12 @@
+A01367102 Bruno Cruz Mendoza
+A01366907 Divad Alejandro Shriqui Garrron
+
 Manual de usuario del Lexer de C- en Python
 
     Introducción
     El Lexer de C- en Python es una herramienta que permite analizar el código fuente de programas escritos en lenguaje 
     C-, y descomponerlo en sus elementos básicos, como tokens, operadores, palabras clave, identificadores, números y otros símbolos. 
-    Este Lexer se ha desarrollado en Python para una mejor reutilizacion de codigo.
+    Este Lexer se ha desarrollado en Python para una mejor reutilización de Código.
 
     Instalación
     Para poder utilizar el Lexer de C- en Python, es necesario tener instalado Python en su versión 3.x en su ordenador. Para instalar Python, 
@@ -13,7 +16,7 @@ Manual de usuario del Lexer de C- en Python
     Una vez que tengas Python instalado, puedes descargar el archivo scanner.py, globalTypes.py, mainSca.py y pruebac-.txt
     desde el sitio web de GitHub del proyecto: https://github.com/A01367102/lexer. 
     Estos archivos contienen la implementación del Lexer de C- en Python. 
-    Despues, sera necesario ejecutar el archivo mainSca.py para poder correr el lexer.
+    después, será necesario ejecutar el archivo mainSca.py para poder correr el lexer.
 
     scanner.py
     En este archivo se encuentra la implementación del Lexer de C- en Python.
@@ -23,4 +26,32 @@ Manual de usuario del Lexer de C- en Python
 
     globalTypes.py
     En este archivo se encuentra la implementación de los tipos de datos globales.
-    
+
+
+Expresiones regulares
+
+
+Palabras clave:
+
+('if' | 'else' | 'while' | 'return' | 'int' | 'void' )  
+
+
+Identificadores: ID
+
+[a-zA-Z]+[a-zA-Z]*
+
+
+Números: NUM
+
+[0-9]+'
+
+
+Operadores y símbolos: 
+
+( '==' | '!=' | '<=' | '>=' | '<' | '>' | '=' | '+' | '-' | '*' | '/'  | '(' | ')' | '[' | ']' | '{' | '}' | ',' | ';' )
+
+
+
+Automata finito determinista
+
+https://media.discordapp.net/attachments/617029903476326470/1098471918409093211/image.png

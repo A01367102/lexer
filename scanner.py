@@ -121,10 +121,10 @@ def getToken(imprime = True): # función principal
                         c='!='
                     else:
                         currentToken = TokenType.ERROR
-                elif c == '"':
-                    state = StateType.INSTRING
+                        print("ERROR in: ", program[position], "line: ", lineno)
                 else:
                     currentToken = TokenType.ERROR
+                    print("ERROR in: ", program[position], "line: ", lineno)
         elif state == StateType.INCOMMENT: # comentario
             save = False
             if position == programLength: #EOF
@@ -146,32 +146,29 @@ def getToken(imprime = True): # función principal
                     position -= 1 # ungetNextChar()
                 save = False
                 currentToken = TokenType.ERROR
+                print("ERROR in: ", program[position], "line: ", lineno)
+                
         elif state == StateType.INNUM: # número
             if not c.isdigit():
+                if c.isalpha():
+                    print("ERROR in: ", program[position], "line: ", lineno)
                 # backup in the input
                 if position <= programLength:
                     position -= 1 # ungetNextChar()
                 save = False
                 state = StateType.DONE
                 currentToken = TokenType.NUM
+            
         elif state == StateType.INID: # identificador
             if not c.isalpha():
+                if c.isdigit():
+                    print("ERROR in: ", program[position], "line: ", lineno)
                 # backup in the input
                 if position <= programLength:
                     position -= 1 # ungetNextChar()
                 save = False
                 state = StateType.DONE
                 currentToken = TokenType.ID
-        elif state == StateType.INSTRING: # cadena
-            if not c.isalpha() or " " or "\t" or "\n":
-                # backup in the input
-                if position <= programLength:
-                    position -= 1 # ungetNextChar()
-                save = False
-                state = StateType.DONE
-                currentToken = TokenType.ID
-            elif c == '"':
-                state = StateType.START
         elif state == StateType.DONE: # final
             None
         else: # should never happen

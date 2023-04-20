@@ -1,7 +1,7 @@
 int main() {
     !
     int x = 123;
-    printf("Hello, world!\n");
+    int y = 123;
     /*esto es 
     un comentario*/
     return 0;
@@ -13,6 +13,8 @@ int main() {
     /*esto es un comentario*/
     contador = contador + 3indice
 }
+
+
 
 /*esto es 
 un comentario*/
@@ -77,3 +79,23 @@ while (i < 10)
 i = i + 1;
 }
 }
+
+1 + 1n
+
+int 1main (void)
+
+{ int i;
+i = 0;
+while (i < 10)
+{ x[i] input();
+i = i + 1;
+}
+sort" (x, 0, 10);
+i = 0;
+while (i < 10)
+{ output (x[i]);
+i = i + 1;
+}
+}
+"
+1=-=1
