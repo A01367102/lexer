@@ -72,18 +72,12 @@ def getToken(imprime = True):
                 elif c == '-':
                     currentToken = TokenType.MINUS
                 elif c == '*':
-                    cc = program[position+1]
-                    if cc =='/': #end comment
-                        c='*/'
-                        position=+1
-                    else:
-                        currentToken = TokenType.TIMES
+                    currentToken = TokenType.TIMES
                 elif c == '/':
                     cc = program[position+1]
                     if cc =='*':
                         save = False
                         state = StateType.INCOMMENT
-                        position=+1
                     else:
                         currentToken = TokenType.OVER
                 elif c == '(':
@@ -120,8 +114,8 @@ def getToken(imprime = True):
                 state = StateType.DONE
                 currentToken = TokenType.ENDFILE
             elif c == '*' and program[position+1] == '/':
-                state = StateType.START
                 position += 1
+                state = StateType.START
             elif c == '\n':
                 #print("línea: ", lineno)
                 lineno += 1
