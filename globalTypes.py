@@ -59,6 +59,7 @@ class StateType(Enum):
     INNUM = 3
     INID = 4
     DONE = 5
+    INSTRING = 6
 
 # ReservedWords
 class ReservedWords(Enum):

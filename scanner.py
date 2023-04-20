@@ -110,7 +110,8 @@ def getToken(imprime = True):
                         c='!='
                     else:
                         currentToken = TokenType.ERROR
-                    
+                elif c == '"':
+                    state = StateType.INSTRING
                 else:
                     currentToken = TokenType.ERROR
         elif state == StateType.INCOMMENT:
@@ -118,8 +119,9 @@ def getToken(imprime = True):
             if position == programLength: #EOF
                 state = StateType.DONE
                 currentToken = TokenType.ENDFILE
-            elif c == '*/':
+            elif c == '*' and program[position+1] == '/':
                 state = StateType.START
+                position += 1
             elif c == '\n':
                 #print("línea: ", lineno)
                 lineno += 1
@@ -149,6 +151,16 @@ def getToken(imprime = True):
                 save = False
                 state = StateType.DONE
                 currentToken = TokenType.ID
+        elif state == StateType.INSTRING:
+            if not c.isalpha() or " " or "\t" or "\n":
+                # backup in the input
+                if position <= programLength:
+                    position -= 1 # ungetNextChar()
+                save = False
+                state = StateType.DONE
+                currentToken = TokenType.ID
+            elif c == '"':
+                state = StateType.START
         elif state == StateType.DONE:
             None
         else: # should never happen
