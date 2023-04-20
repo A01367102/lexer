@@ -12,3 +12,20 @@ int main() {
     !=
     contador = contador + 3indice
 }
+
+/*esto es 
+un comentario*/
+
+int gcd (int u, int v)
+{ if (v == O) return u ;
+else return gcd (v,u-u/v*v) ;
+
+/*esto es 
+un comentario*/
+
+}
+void main (void)
+{ int x; int Y ;
+x input(); Y input();
+output (gcd (x, y) ) ;
+}
